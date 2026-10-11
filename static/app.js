@@ -92,3 +92,99 @@
 
   exchangeLoginCode();
 })();
+
+// SWS authenticated community pages
+(async function swsCommunityAccess() {
+  const BACKEND = "https://sws-backend-seven.vercel.app";
+  const token = sessionStorage.getItem("sws_token");
+  const page = location.pathname.split("/").pop();
+
+  const notice = document.getElementById("authNotice");
+  const message = document.getElementById("authMessage");
+  const authStatus = document.getElementById("authStatus");
+  const membershipNote = document.getElementById("membershipNote");
+
+  function showLoginRequired() {
+    if (notice) {
+      notice.querySelector("strong").textContent = "Discord login required";
+      message.textContent = "Log in with Discord to view communities available to your account.";
+    }
+    if (authStatus) authStatus.textContent = "Login required";
+    if (membershipNote) {
+      membershipNote.textContent = "Log in with Discord to verify your KAI'S HUB membership.";
+    }
+  }
+
+  if (!token) {
+    showLoginRequired();
+    if (page === "kaihub.html") {
+      setTimeout(() => location.replace("index.html"), 1800);
+    }
+    return;
+  }
+
+  try {
+    const endpoint = page === "servers.html" ? "/api/servers" : "/api/me";
+    const response = await fetch(BACKEND + endpoint, {
+      headers: { Authorization: "Bearer " + token },
+      cache: "no-store"
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      sessionStorage.removeItem("sws_token");
+      sessionStorage.removeItem("sws_user");
+      showLoginRequired();
+      if (page === "kaihub.html") {
+        setTimeout(() => location.replace("index.html"), 1800);
+      }
+      return;
+    }
+
+    if (page === "servers.html") {
+      const servers = Array.isArray(data.servers) ? data.servers : [];
+      const allowed = servers.some(server =>
+        server.id === "1543790133407383634" &&
+        server.path === "kaihub.html"
+      );
+
+      if (!allowed) {
+        if (notice) {
+          notice.querySelector("strong").textContent = "No community access";
+          message.textContent = "Your account has no authorized communities.";
+        }
+        document.querySelectorAll(".server-card").forEach(card => card.remove());
+        return;
+      }
+
+      if (notice) notice.remove();
+      return;
+    }
+
+    if (page === "kaihub.html") {
+      if (data.server?.id !== "1543790133407383634") {
+        if (authStatus) authStatus.textContent = "Access denied";
+        if (membershipNote) membershipNote.textContent = "Your account is not authorized for this community.";
+        return;
+      }
+
+      if (authStatus) {
+        authStatus.textContent = "Authenticated";
+        authStatus.classList.remove("red");
+      }
+      if (membershipNote) {
+        membershipNote.textContent =
+          "Signed in as " + (data.user?.username || "Discord user") +
+          ". Access was confirmed by the SWS backend.";
+      }
+    }
+  } catch (error) {
+    if (notice) {
+      notice.querySelector("strong").textContent = "Connection error";
+      message.textContent = "Could not verify your session. Check your connection and try again.";
+    }
+    if (authStatus) authStatus.textContent = "Unverified";
+    if (membershipNote) membershipNote.textContent = "The backend could not verify your session.";
+  }
+})();
