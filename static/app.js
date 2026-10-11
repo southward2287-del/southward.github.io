@@ -176,8 +176,12 @@
       if (membershipNote) {
         membershipNote.textContent =
           "Signed in as " + (data.user?.username || "Discord user") +
-          ". Access was confirmed by the SWS backend.";
+          ". Redirecting to KAI'S HUB main page in 3 seconds...";
       }
+
+      setTimeout(() => {
+        window.location.replace("kaiMain.html");
+      }, 3000);
     }
   } catch (error) {
     if (notice) {
