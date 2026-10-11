@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Welcome to KAI'S HUB, a Minecraft community to build, survive, explore, and play together.">
+  <title>KAI'S HUB | SWS</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+    .hub-hero {
+      padding: 55px 0 35px;
+      border-bottom: 1px solid #29232b;
+    }
+    .hub-hero h1 {
+      font-size: clamp(38px, 8vw, 70px);
+      line-height: 1.08;
+      margin: 12px 0;
+    }
+    .hub-hero p { max-width: 650px; }
+    .hub-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+    .hub-btn {
+      display:inline-block;
+      padding:12px 18px;
+      border:1px solid #ff173c;
+      border-radius:8px;
+      background:#ff173c;
+      color:#fff;
+      font-weight:800;
+      text-decoration:none;
+    }
+    .hub-btn.secondary { background:#111; border-color:#39313b; }
+    .hub-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin:30px 0;
+    }
+    .hub-card {
+      padding:22px;
+      background:#101014;
+      border:1px solid #38303a;
+      border-radius:12px;
+    }
+    .hub-card h2 { margin-top:0; font-size:21px; }
+    .hub-card p, .hub-card li { color:#b4b6c1; }
+    .hub-card ul { padding-left:20px; }
+    .hub-card li { margin:9px 0; }
+    .hub-icon { color:#ff173c; font-size:25px; margin-bottom:10px; }
+    .hub-socials { display:grid; gap:10px; }
+    .hub-socials a {
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px;
+      border:1px solid #302b34;
+      border-radius:8px;
+      text-decoration:none;
+    }
+    .hub-socials a:hover { border-color:#ff173c; }
+    .hub-socials span { color:#ff173c; }
+    .hub-join {
+      margin:35px 0;
+      padding:30px;
+      border:1px solid #6c1a2d;
+      border-radius:12px;
+      background:linear-gradient(110deg,#281019,#101014);
+    }
+    .hub-join h2 { margin-top:0; font-size:clamp(24px,5vw,34px); }
+    .hub-footer {
+      padding:24px 0;
+      border-top:1px solid #29232b;
+      color:#a7adbb;
+      font-size:13px;
+    }
+    @media(max-width:760px) {
+      .hub-grid { grid-template-columns:1fr; }
+      .hub-hero { padding-top:35px; }
+      .hub-join { padding:22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="SWS Home">SW<span>S</span></a>
+      <nav class="navlinks" aria-label="Navigation">
+        <a href="index.html">Home</a>
+        <a href="servers.html">Servers</a>
+        <a href="kaiip.html">Server IPs</a>
+        <a href="kairules.html">Rules</a>
+      </nav>
+      <span class="nav-tag">KAI'S HUB</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hub-hero">
+      <p class="eyebrow"><span class="status-dot"></span> KAI'S HUB COMMUNITY</p>
+      <h1>BUILD. <span class="red">SURVIVE.</span><br>PLAY TOGETHER.</h1>
+      <p class="description">
+        Welcome to KAI'S HUB, a Minecraft community where players can build,
+        survive, explore, share their creations, and make new friends.
+        Whether you're an experienced player or just starting out,
+        there's a place for you here.
+      </p>
+      <div class="hub-actions">
+        <a class="hub-btn" href="kaiip.html">View Server IPs ↗</a>
+        <a class="hub-btn secondary" href="kairules.html">Read the Rules</a>
+      </div>
+    </section>
+
+    <section class="hub-grid" aria-label="Community information">
+      <article class="hub-card">
+        <div class="hub-icon" aria-hidden="true">◆</div>
+        <h2>About <span class="red">KAI'S HUB</span></h2>
+        <p>
+          KAI'S HUB is built around Minecraft, community, and shared
+          adventures. Explore the server, work on builds, meet other
+          players, and take part in community activities.
+        </p>
+        <p>Check the server information page for available editions and connection details.</p>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-icon" aria-hidden="true">✦</div>
+        <h2>Community <span class="red">Features</span></h2>
+        <ul>
+          <li>Minecraft gameplay and exploration</li>
+          <li>Building and creative projects</li>
+          <li>Community events and activities</li>
+          <li>Player interaction and collaboration</li>
+          <li>Announcements and server updates</li>
+        </ul>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-icon" aria-hidden="true">☰</div>
+        <h2>Play Fair. <span class="red">Stay Respectful.</span></h2>
+        <p>
+          Treat players fairly, respect other people's builds, avoid cheating,
+          and follow the community guidelines.
+        </p>
+        <p>Read all the rules before playing.</p>
+        <a class="hub-btn secondary" href="kairules.html">Open Rules ↗</a>
+      </article>
+    </section>
+
+    <section class="hub-grid" aria-label="Social links">
+      <article class="hub-card">
+        <div class="hub-icon" aria-hidden="true">◎</div>
+        <h2>Join Our <span class="red">Community</span></h2>
+        <p>Follow announcements, meet community members, and stay informed about updates.</p>
+        <div class="hub-socials">
+          <a href="https://discord.com/" target="_blank" rel="noopener noreferrer">
+            <strong>Discord</strong><span>↗</span>
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+            <strong>YouTube</strong><span>↗</span>
+          </a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
+            <strong>TikTok</strong><span>↗</span>
+          </a>
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+            <strong>X / Twitter</strong><span>↗</span>
+          </a>
+        </div>
+        <p class="small-note">Replace these general links with KAI'S HUB's official profiles.</p>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-icon" aria-hidden="true">⌘</div>
+        <h2>Server <span class="red">Connections</span></h2>
+        <p>
+          Looking for the right Minecraft address? The IP page can list
+          multiple Java, Bedrock, or alternative connections.
+        </p>
+        <a class="hub-btn" href="kaiip.html">Browse Server IPs ↗</a>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-icon" aria-hidden="true">⚑</div>
+        <h2>Need <span class="red">Help?</span></h2>
+        <p>
+          For technical issues, player reports, or questions about the
+          community, use the official support channel once configured.
+        </p>
+        <a class="hub-btn secondary" href="kairules.html">Community Guidelines ↗</a>
+      </article>
+    </section>
+
+    <section class="hub-join">
+      <p class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</p>
+      <h2>READY TO <span class="red">PLAY?</span></h2>
+      <p class="description">
+        Get the correct server address, read the rules, and join KAI'S HUB.
+      </p>
+      <div class="hub-actions">
+        <a class="hub-btn" href="kaiip.html">Get Server IP ↗</a>
+        <a class="hub-btn secondary" href="kairules.html">Read Rules</a>
+      </div>
+    </section>
+
+    <footer class="hub-footer">
+      <div class="footer-row">
+        <a class="brand" href="index.html">SW<span>S</span></a>
+        <span>SOUTHWEBSERVER — Better Communities. Stronger Together.</span>
+        <a href="servers.html">All Communities ↗</a>
+      </div>
+      <p>KAI'S HUB · Minecraft Community</p>
+    </footer>
+  </main>
+</body>
+</html>

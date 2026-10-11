@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>Server IPs | KAI'S HUB</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+    .ip-list { display:grid; gap:16px; margin-top:25px; }
+    .ip-card { background:#101014; border:1px solid #38303a; border-radius:12px; padding:22px; }
+    .ip-card h2 { margin:0 0 5px; font-size:20px; }
+    .muted { color:#a7adbb; }
+    .ip-row { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-top:15px; }
+    .ip-value { overflow-wrap:anywhere; font-weight:800; font-size:20px; }
+    .copy-btn { background:#ff173c; color:white; border:0; border-radius:8px; padding:10px 16px; font-weight:700; cursor:pointer; }
+    .copy-btn:hover { background:#d90f30; }
+    .tag { color:#ff647e; font-size:12px; text-transform:uppercase; letter-spacing:1px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">SW<span>S</span></a>
+      <nav class="navlinks">
+        <a href="kaiMain.html">KAI'S HUB</a>
+        <a href="kaiip.html">Server IPs</a>
+        <a href="kairules.html">Rules</a>
+      </nav>
+      <span class="nav-tag">KAI'S HUB</span>
+    </div>
+  </header>
+
+  <main class="wrap page-content">
+    <p class="eyebrow">KAI'S HUB · CONNECTIONS</p>
+    <h1>SERVER <span class="red">IPS.</span></h1>
+    <p class="description">Choose the correct address for your Minecraft edition and copy it to join.</p>
+
+    <div class="notice">
+      <strong>Server addresses need configuration</strong>
+      <p>Replace the example addresses below with your real IPs and ports before publishing.</p>
+    </div>
+
+    <section class="ip-list">
+      <article class="ip-card">
+        <span class="tag">Java Edition</span>
+        <h2>Java Server</h2>
+        <p class="muted">For Minecraft Java Edition players.</p>
+        <div class="ip-row">
+          <code class="ip-value">JAVA_IP_HERE</code>
+          <button class="copy-btn" data-copy="JAVA_IP_HERE">Copy IP</button>
+        </div>
+      </article>
+
+      <article class="ip-card">
+        <span class="tag">Bedrock Edition</span>
+        <h2>Bedrock Server</h2>
+        <p class="muted">For Minecraft Bedrock Edition players.</p>
+        <div class="ip-row">
+          <code class="ip-value">BEDROCK_IP_HERE</code>
+          <button class="copy-btn" data-copy="BEDROCK_IP_HERE">Copy IP</button>
+        </div>
+        <p class="muted">Bedrock may also require a port number.</p>
+      </article>
+
+      <article class="ip-card">
+        <span class="tag">Alternative Connection</span>
+        <h2>Backup Server</h2>
+        <p class="muted">An optional secondary address, if available.</p>
+        <div class="ip-row">
+          <code class="ip-value">BACKUP_IP_HERE</code>
+          <button class="copy-btn" data-copy="BACKUP_IP_HERE">Copy IP</button>
+        </div>
+      </article>
+    </section>
+
+    <p class="back-link"><a href="kaiMain.html">← Back to KAI'S HUB</a></p>
+    <p class="footer-note">SWS — SOUTHWEBSERVER</p>
+  </main>
+
+  <div id="copyNotice" role="status" aria-live="polite" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#202027;border:1px solid #49404a;padding:12px 18px;border-radius:8px;z-index:20"></div>
+
+  <script>
+    const notice = document.getElementById("copyNotice");
+    document.querySelectorAll("[data-copy]").forEach(button => {
+      button.addEventListener("click", async () => {
+        const value = button.dataset.copy;
+        if (value.endsWith("_HERE")) {
+          notice.textContent = "Set the real server address in kaiip.html first.";
+          notice.style.display = "block";
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(value);
+          notice.textContent = "Server address copied.";
+        } catch {
+          notice.textContent = "Copy failed. Select and copy the address manually.";
+        }
+        notice.style.display = "block";
+      });
+    });
+  </script>
+</body>
+</html>
