@@ -1,6 +1,6 @@
 
 (() => {
-  const BACKEND = "https://sws-backend-nf6o.onrender.com";
+  const BACKEND = "https://sws-backend-seven.vercel.app";
   const loader = document.getElementById("loader");
   const menuButton = document.getElementById("menuButton");
   const sideMenu = document.getElementById("sideMenu");
