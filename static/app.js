@@ -64,8 +64,8 @@
       }
 
       // Session is kept in this browser tab.
-      sessionStorage.setItem("sws_token", data.token);
-      sessionStorage.setItem("sws_user", JSON.stringify(data.user || {}));
+      localStorage.setItem("sws_token", data.token);
+      localStorage.setItem("sws_user", JSON.stringify(data.user || {}));
 
       if (loginNote) loginNote.textContent =
         `Logged in as ${data.user?.username || "Discord user"}.`;
@@ -96,7 +96,7 @@
 // SWS authenticated community pages
 (async function swsCommunityAccess() {
   const BACKEND = "https://sws-backend-seven.vercel.app";
-  const token = sessionStorage.getItem("sws_token");
+  const token = localStorage.getItem("sws_token");
   const page = location.pathname.split("/").pop();
 
   const notice = document.getElementById("authNotice");
@@ -133,8 +133,8 @@
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      sessionStorage.removeItem("sws_token");
-      sessionStorage.removeItem("sws_user");
+      localStorage.removeItem("sws_token");
+      localStorage.removeItem("sws_user");
       showLoginRequired();
       if (page === "kaihub.html") {
         setTimeout(() => location.replace("index.html"), 1800);
